@@ -31,18 +31,6 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-
-
-
-
-
-
-
-// Routes
-var indexRouter = require("./routes/index");
-var userRouter = require("./routes/users");
-var photoRouter = require("./routes/photos");
-var commentRouter = require("./routes/comments");
-var likeRouter = require("./routes/likes");
-var followRouter = require("./routes/follows");
-var exploreRouter = require("./routes/explore");
+app.listen(3000, () => {
+    console.log("Server is listening");
+})
