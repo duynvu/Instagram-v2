@@ -6,16 +6,16 @@ html{
 
 /* Moema */
 .button--moema {
-    border: none !important;
-
+    border: none !important;    
     margin-top: 1rem;
 	padding: .5em 3em;
 	border-radius: 50px;
 	background: #7986cb;
 	color: rgba(36, 36, 36, 0.897);
 	-webkit-transition: background-color 0.3s, color 0.3s;
-	transition: background-color 0.3s, color 0.3s;
-	cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+    
 }
 .button--moema.button--inverted {
 	background: #ECEFF1;
@@ -106,7 +106,7 @@ html{
 }
 
 .background {
-    background-image: url(../../image/login\ registration.jpg);
+    background-image: url(../../public/image/login\ registration.jpg);
     width: 100%;
     height: 38rem;
     background-repeat: no-repeat;
@@ -131,5 +131,9 @@ html{
     padding-top: 4rem;
     
 }
+
+textarea {
+    resize: none;
+  }
 /* END HEADER CSS */
 
