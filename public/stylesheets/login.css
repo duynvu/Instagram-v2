@@ -15,6 +15,7 @@ html{
 	color: rgba(36, 36, 36, 0.897);
 	-webkit-transition: background-color 0.3s, color 0.3s;
 	transition: background-color 0.3s, color 0.3s;
+	cursor: pointer;
 }
 .button--moema.button--inverted {
 	background: #ECEFF1;
