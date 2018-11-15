@@ -11,8 +11,8 @@ var express     = require("express"),
     methodOverride = require("method-override");
 
 //requring routes
-var indexRoutes      = require("./routes/index");
-
+var indexRoutes      = require("./routes/index"),
+    photoRoutes      = require("./routes/photos");
 
 
 mongoose.connect("mongodb://localhost/instagram-v2", { useNewUrlParser: true });
@@ -52,6 +52,7 @@ app.get("/photos",function(req,res){
 
 
 app.use("/", indexRoutes);
+app.use("/photos", photoRoutes);
 
 app.listen(3000, () => {
     console.log("Server is listening");
