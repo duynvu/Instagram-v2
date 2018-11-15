@@ -3,13 +3,13 @@ var mongoose = require("mongoose");
 var photoSchema = new mongoose.Schema({
 	image: String,
 	caption: String,
-// 	author: {
-// 		id: {
-// 			type: mongoose.Schema.Types.ObjectId,
-// 			ref:"User"
-// 		},
-// 		username: String
-// 	},
+	author: {
+		id: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref:"User"
+		},
+		username: String
+	}
 // 	comments: [
 // 		{
 // 			type: mongoose.Schema.Types.ObjectId,

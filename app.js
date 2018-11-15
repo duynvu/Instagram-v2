@@ -46,10 +46,6 @@ app.use(function(req, res, next){
     next();
 });
 
-app.get("/photos",function(req,res){
-    res.render("index")
-})
-
 
 app.use("/", indexRoutes);
 app.use("/photos", photoRoutes);

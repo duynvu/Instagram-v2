@@ -6,7 +6,7 @@ var User = require("../models/user");
 
 //root route
 router.get('/', function(req, res) {
-    res.send("ok");
+    res.send('ok');
 })
 
 
