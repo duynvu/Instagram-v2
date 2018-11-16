@@ -1,15 +1,19 @@
 var express = require("express");
 var router  = express.Router();
+
 var Photo   = require("../models/photo");
 var middleware = require("../middleware");
+var PhotoController = require('../src/controller/PhotoController');
+
+router.get('/', PhotoController.photo_get);
+router.get('/new', middleware.isLoggedIn, PhotoController.photo_new_get);
+router.post('/', middleware.isLoggedIn, PhotoController.photo_new_post);
 
 
 //INDEX - show all photos
 router.get("/",function(req,res){
 	res.render("photos/index");
 });
-
-
 
 
 //NEW - show form to create new photo
