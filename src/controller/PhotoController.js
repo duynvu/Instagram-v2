@@ -1,7 +1,7 @@
 var Photo   = require("../models/photo");
 var middleware = require("../middleware");
 
-exports.phot_get = (req, res) => {
+exports.photo_get = (req, res) => {
   res.render('photos/index');
 }
 
@@ -28,4 +28,12 @@ exports.photo_new_post = (req,res) => {
 			res.redirect("/photos");
 		}
 	})
+}
+
+exports.photo_delete = (req, res) => {
+
+}
+
+exports.photo_edit = (req, res) => {
+
 }
