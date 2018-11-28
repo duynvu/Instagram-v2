@@ -19,26 +19,42 @@ router.get("/new", middleware.isLoggedIn ,function(req,res){
 
 
 //CREATE - add new photo to DB
-router.post("/", middleware.isLoggedIn, function(req,res){
-	var caption = req.body.caption;
-	var image = req.body.image;
-	var author =  {
-		id: req.user._id,
-		username: req.user.username
-	}
+// router.post("/", middleware.isLoggedIn, function(req,res){
+// 	var caption = req.body.caption;
+// 	var image = req.body.image;
+// 	var author =  {
+// 		id: req.user._id,
+// 		username: req.user.username
+// 	}
+// 	var newPhoto = {caption: caption, image: image, author:author}
+// 	//Create a new photo and save to DB
+// 	Photo.create(newPhoto, function(err, newlyCreated){
+// 		if(err){
+// 			console.log(err);
+// 		} else {
+// 			//redirect back to photos page
+// 			console.log(newlyCreated);
+// 			res.redirect("/photos");
+// 		}
+// 	})
+// })
 
-	var newPhoto = {caption: caption, image: image, author:author}
-	//Create a new photo and save to DB
-	Photo.create(newPhoto, function(err, newlyCreated){
+router.post("/", middleware.isLoggedIn ,function(req,res) {
+	User.findById(req.user._id, function(err,user){
 		if(err){
 			console.log(err);
-		} else {
-			//redirect back to photos page
-			console.log(newlyCreated);
-			res.redirect("/photos");
 		}
-	})
-})
+		Photo.create(req.body.photo, function(err,photo){
+			if(err){
+				console.log(err);
+			}
+			user.photos.push(photo);
+			user.save();
+			res.redirect('/photos');
+		});
+	});
+});
+
 
 
 module.exports = router;
