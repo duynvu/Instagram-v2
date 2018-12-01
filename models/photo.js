@@ -1,15 +1,15 @@
-// var mongoose = require("mongoose");
+var mongoose = require("mongoose");
 
-// var photoSchema = new mongoose.Schema({
-// 	image: String,
-// 	description: String,
-// 	author: {
-// 		id: {
-// 			type: mongoose.Schema.Type.ObjectId,
-// 			ref:"User"
-// 		},
-// 		username: String
-// 	},
+var photoSchema = new mongoose.Schema({
+	image: String,
+	caption: String,
+	author: {
+		id: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref:"User"
+		},
+		username: String
+	}
 // 	comments: [
 // 		{
 // 			type: mongoose.Schema.Types.ObjectId,
@@ -29,6 +29,6 @@
 // 			ref:"Photo_tag"
 // 		}
 // 	] 
-// });
+});
 
-// module.exports = mongoose.model("Photo",photoSchema);
+module.exports = mongoose.model("Photo",photoSchema);
