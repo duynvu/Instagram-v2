@@ -2,7 +2,7 @@ var express = require("express");
 var router  = express.Router();
 var Photo   = require("../models/photo");
 var middleware = require("../middleware");
-
+var User =  require("../models/user");
 
 //INDEX - show all photos
 router.get("/",function(req,res){
