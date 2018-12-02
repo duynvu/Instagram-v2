@@ -43,6 +43,7 @@ router.post("/login", passport.authenticate("local",
         successRedirect: "/photos",
         failureRedirect: "/login"
     }), function(req,res){
+        req.flash("success", "Welcome to Instagram " + user.username);
 });
 
 //logout route

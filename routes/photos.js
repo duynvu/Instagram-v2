@@ -6,7 +6,8 @@ var User =  require("../models/user");
 
 //INDEX - show all photos
 router.get("/",middleware.isLoggedIn,function(req,res){
-	res.render("photos/index");
+	console.log(req.user);
+	res.render("photos/index",{currentUser:req.user});
 });
 
 
