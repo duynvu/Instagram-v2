@@ -45,10 +45,15 @@ router.post("/", middleware.isLoggedIn ,function(req,res) {
 		if(err){
 			console.log(err);
 		}
-		Photo.create(req.body.photo, function(err,photo){
+		var caption = req.body.caption;
+		var image = req.body.image;
+		var newPhoto = {caption:caption, image:image, author:user._id};
+		// console.log(newPhoto);
+		Photo.create(newPhoto, function(err,photo){
 			if(err){
 				console.log(err);
 			}
+			console.log(photo);
 			user.photos.push(photo);
 			user.save();
 			res.redirect('/photos');
