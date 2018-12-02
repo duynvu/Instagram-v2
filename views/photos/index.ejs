@@ -16,7 +16,6 @@
 </head>
 
 <body>
-    
     <!-- HEADER -->
     <header class="header myNavBar">
         <div class="container">
@@ -49,7 +48,7 @@
                     <div class="buttonControl">
                         <i class="fa fa-compass"></i>
                         <i class="fa fa-heart-o"></i>
-                        <i class="fa fa-user-o"></i>
+                        <i href="/users/<%= currentUser._id %>" class="fa fa-user-o"></i>
                     </div>
                 </div>
             </nav>
@@ -71,6 +70,8 @@
     </div>
 
     <h1>Home Page</h1>
+
+    <h2><%= currentUser %></h2>
 </body>
 </html>
 
