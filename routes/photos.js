@@ -5,7 +5,7 @@ var middleware = require("../middleware");
 var User =  require("../models/user");
 
 //INDEX - show all photos
-router.get("/",function(req,res){
+router.get("/",middleware.isLoggedIn,function(req,res){
 	res.render("photos/index");
 });
 
