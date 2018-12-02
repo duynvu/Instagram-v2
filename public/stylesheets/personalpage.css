@@ -1,4 +1,4 @@
-/* GLOBAL CSS */
+ GLOBAL CSS */
 html{
     font-size: 20px;
 }
@@ -156,10 +156,10 @@ html{
     transition: all 0.8s linear 0s;    
 }
 
-.photo-item1:hover .photo-info{
+.photo-item:hover .photo-info{
     opacity: 1;
 }
-.photo-item2:hover .photo-info{
+/*.photo-item2:hover .photo-info{
     opacity: 1;
 }
 .photo-item3:hover .photo-info{
@@ -182,8 +182,8 @@ html{
 }
 .photo-item9:hover .photo-info{
     opacity: 1;
-}
+}*/
 
 
 
-/* END PHOTO CSS */
+/* END PHOTO CSS 

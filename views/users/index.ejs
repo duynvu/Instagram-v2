@@ -67,7 +67,7 @@
                 </div>
                 <div class="col-md-8">
                     <div class="firstUserControl">
-                        <span><%= currentUser.username%></span>
+                        <span><%= currentUser.username %></span>
                         <button type="button" class="settingButtonControl btn btn-light">
                             Edit profile
                             <i class="fa fa-cog"></i>
@@ -99,74 +99,19 @@
     </section>
 
     <!-- END USER -->
-
     <!-- PHOTO -->
     <section class="photo">
         <div class="container">
             <div class="photoList">
-                <div class="photo-item photo-item1">
-                    <div class="photo-info">
-                        <span><i class="fa fa-heart"></i> 19</span>
-                        <p><i class="fa fa-comment"></i> 0</p>
+                 <% user.photos.forEach(function(photo){ console.log(photo); %> 
+                    <div class="photo-item photo-item">
+                        <div class="photo-info">
+                            <span><i class="fa fa-heart"></i> 19</span>
+                            <p><i class="fa fa-comment"></i> 0</p>
+                        </div>
+                        <img src="<%=photo.image%>" class="photo-image" alt="">
                     </div>
-                    <img src="../public/image/photo_item1.jpg" class="photo-image" alt="">
-                </div>
-                <div class="photo-item photo-item2">
-                    <div class="photo-info">
-                        <span><i class="fa fa-heart"></i> 9</span>
-                        <p><i class="fa fa-comment"></i> 2</p>
-                    </div>
-                    <img src="../public/image/photo_item2.jpg" class="photo-image" alt="">
-                </div>
-                <div class="photo-item photo-item3">
-                    <div class="photo-info">
-                        <span><i class="fa fa-heart"></i> 32</span>
-                        <p><i class="fa fa-comment"></i> 1</p>
-                    </div>
-                    <img src="../public/image/photo_item3.jpg" class="photo-image" alt="">
-                </div>
-                <div class="photo-item photo-item4">
-                    <div class="photo-info">
-                        <span><i class="fa fa-heart"></i> 22</span>
-                        <p><i class="fa fa-comment"></i> 1</p>
-                    </div>
-                    <img src="../public/image/photo_item4.jpg" class="photo-image" alt="">
-                </div>
-                <div class="photo-item photo-item5">
-                    <div class="photo-info">
-                        <span><i class="fa fa-heart"></i> 25</span>
-                        <p><i class="fa fa-comment"></i> 3</p>
-                    </div>
-                    <img src="../public/image/photo_item5.jpg" class="photo-image" alt="">
-                </div>
-                <div class="photo-item photo-item6">
-                    <div class="photo-info">
-                        <span><i class="fa fa-heart"></i> 58</span>
-                        <p><i class="fa fa-comment"></i> 12</p>
-                    </div>
-                    <img src="../public/image/photo_item6.jpg" class="photo-image" alt="">
-                </div>
-                <div class="photo-item photo-item7">
-                    <div class="photo-info">
-                        <span><i class="fa fa-heart"></i> 19</span>
-                        <p><i class="fa fa-comment"></i> 0</p>
-                    </div>
-                    <img src="../public/image/photo_item7.jpg" class="photo-image" alt="">
-                </div>
-                <div class="photo-item photo-item8">
-                    <div class="photo-info">
-                        <span><i class="fa fa-heart"></i> 23</span>
-                        <p><i class="fa fa-comment"></i> 3</p>
-                    </div>
-                    <img src="../public/image/photo_item8.jpg" class="photo-image" alt="">
-                </div>
-                <div class="photo-item photo-item9">
-                    <div class="photo-info">
-                        <span><i class="fa fa-heart"></i> 11</span>
-                        <p><i class="fa fa-comment"></i> 1</p>
-                    </div>
-                    <img src="../public/image/photo_item9.jpg" class="photo-image" alt="">
-                </div>
+                <% }); %>
             </div>
         </div>
     </section>

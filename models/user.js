@@ -5,7 +5,12 @@ var UserSchema = new mongoose.Schema({
     username: String,
     password: String,
     fullname: String,
-    image: String
+    photos: [
+    	{
+    		type: mongoose.Schema.Types.ObjectId,
+    		ref: "Photo"
+    	}
+    ]
 });
 
 UserSchema.plugin(passportLocalMongoose);

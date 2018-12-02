@@ -6,10 +6,14 @@ var User =  require("../models/user");
 
 
 router.get("/:id",middleware.isLoggedIn, function(req,res) {
-	User.findById(req.params.id).populate("photo").exec(function(err, user) {
+	User
+	  .findById(req.params.id)
+	  .populate("photos")
+	  .exec(function(err, user) {
 		if(err) {
 			console.log(err);
 		}
+		console.log(user);
 		res.render("users/index", {user:user});
 	});
 });
