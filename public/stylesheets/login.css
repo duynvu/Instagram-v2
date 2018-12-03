@@ -21,6 +21,10 @@ html{
 	background: #ECEFF1;
 	color: #37474f;
 }
+
+button:click{
+	border: none !important;
+}
 .button--moema::before {
 	content: '';
 	position: absolute;
@@ -94,9 +98,12 @@ html{
 	}
 }
 
-.buton-custom {
+.buton--custom {
     padding: 3px 5px;
+
 }
+
+
 
 /* END GLOBAL CSS */
 

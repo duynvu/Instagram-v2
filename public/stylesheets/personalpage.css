@@ -142,7 +142,7 @@ html{
     object-fit: cover;
     display: block;
     width: 100%;
-    height: 100%
+    height: 100%;
 }
 
 .photo-info{    
@@ -154,7 +154,8 @@ html{
     top: 0;
     left: 0;    
     opacity: 0;
-    padding: 7rem 7rem;
+    text-align: center;
+    padding-top: 40%;
     transition: all 0.8s linear 0s;    
 }
 
