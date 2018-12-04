@@ -14,8 +14,12 @@ router.get("/:id",middleware.isLoggedIn, function(req,res) {
 		if(err) {
 			console.log(err);
 		}
-		// console.log(user);
-		res.render("users/index", {user:user});
+		
+		console.log(req.params.id)
+		
+		//if(currentUser._id.equals(req.user._id)){
+			res.render("users/index", {user:user});
+		//}
 	});
 });
 
