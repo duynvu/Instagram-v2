@@ -14,7 +14,7 @@ router.get("/:id",middleware.isLoggedIn, function(req,res) {
 		if(err) {
 			console.log(err);
 		}
-		console.log(user);
+		// console.log(user);
 		res.render("users/index", {user:user});
 	});
 });
@@ -26,10 +26,23 @@ router.post("/:id/follow", function(req, res) {
 	}, function(err, follow) {
 		if(err) {
 			console.log(err);
-			res.status(500);
+			res.sendStatus(500);
 		}
-		console.log(follow);
-		res.status(200);
+		// console.log(follow);
+		res.sendStatus(200);
+	})
+})
+
+router.delete("/:id/follow", function(req, res) {
+	Follow.move({
+		follower: req.user.id,
+		followee: req.params.id
+	}, function(err) {
+		if(err) {
+			console.log(err);
+			res.sendStatus(500);
+		}
+		res.sendStatus(200);
 	})
 })
 
