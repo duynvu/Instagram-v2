@@ -47,7 +47,11 @@ router.post("/", middleware.isLoggedIn ,function(req,res) {
 		}
 		var caption = req.body.caption;
 		var image = req.body.image;
-		var newPhoto = {caption:caption, image:image, author:user._id};
+		var author = {
+			id: req.user._id,
+			username: req.user.username
+		}
+		var newPhoto = {caption:caption, image:image, author:author};
 		// console.log(newPhoto);
 		Photo.create(newPhoto, function(err,photo){
 			if(err){
@@ -58,6 +62,18 @@ router.post("/", middleware.isLoggedIn ,function(req,res) {
 			user.save();
 			res.redirect('/photos');
 		});
+	});
+});
+
+//SHOW - shows more info about the photo
+router.get("/:id", function(req,res){
+	Photo.findById(req.params.id).populate("comments").exec(function(err,foundPhoto){
+		if(err){
+			console.log(err);
+		} else {
+			console.log(foundPhoto);
+			res.render("photos/show",{photo: foundPhoto});
+		}
 	});
 });
 
