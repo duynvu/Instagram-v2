@@ -12,8 +12,8 @@ var express     = require("express"),
 
 //requring routes
 var indexRoutes      = require("./routes/index"),
-    photoRoutes      = require("./routes/photos");
-
+    photoRoutes      = require("./routes/photos"),
+    userRoutes       = require("./routes/user");
 
 mongoose.connect("mongodb://localhost/instagram-v2", { useNewUrlParser: true });
 
@@ -40,7 +40,7 @@ passport.deserializeUser(User.deserializeUser());
 
 
 app.use(function(req, res, next){
-    //res.locals.currentUser = req.user;
+    res.locals.currentUser = req.user;
     res.locals.error   = req.flash("error");
     res.locals.success  = req.flash("success");
     next();
@@ -49,6 +49,7 @@ app.use(function(req, res, next){
 
 app.use("/", indexRoutes);
 app.use("/photos", photoRoutes);
+app.use("/users",userRoutes);
 
 app.listen(3000, () => {
     console.log("Server is listening");

@@ -6,7 +6,7 @@ var User = require("../models/user");
 
 //root route
 router.get('/', function(req, res) {
-    res.send('ok');
+    res.render("landing");
 })
 
 
@@ -16,14 +16,18 @@ router.get("/register",function(req,res){
 });
 //handle sign up logic
 router.post("/register", function(req, res){
-    var newUser = new User({username: req.body.username});
+    var newUser = new User({
+        username: req.body.username,
+        fullname: req.body.fullname,
+        image: req.body.image
+    });
     User.register(newUser, req.body.password, function(err, user){
         if(err){
             req.flash("error", err.message);
             return res.render("registration");
         }
         passport.authenticate("local")(req, res, function(){
-           req.flash("success", "Welcome to Instagram" + user.username);
+           req.flash("success", "Welcome to Instagram " + user.username);
            res.redirect("/photos"); 
         });
     });
@@ -39,6 +43,7 @@ router.post("/login", passport.authenticate("local",
         successRedirect: "/photos",
         failureRedirect: "/login"
     }), function(req,res){
+        req.flash("success", "Welcome to Instagram " + user.username);
 });
 
 //logout route

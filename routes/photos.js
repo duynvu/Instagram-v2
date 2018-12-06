@@ -1,6 +1,8 @@
 var express = require("express");
 var router  = express.Router();
 
+
+var User =  require("../models/user");
 var Photo   = require("../models/photo");
 var middleware = require("../middleware");
 var PhotoController = require('../src/controller/PhotoController');
@@ -9,10 +11,10 @@ router.get('/', PhotoController.photo_get);
 router.get('/new', middleware.isLoggedIn, PhotoController.photo_new_get);
 router.post('/', middleware.isLoggedIn, PhotoController.photo_new_post);
 
-
 //INDEX - show all photos
-router.get("/",function(req,res){
-	res.render("photos/index");
+router.get("/",middleware.isLoggedIn,function(req,res){
+	console.log(req.user);
+	res.render("photos/index",{currentUser:req.user});
 });
 
 
@@ -21,28 +23,27 @@ router.get("/new", middleware.isLoggedIn ,function(req,res){
 	res.render("photos/new");
 })
 
-
-//CREATE - add new photo to DB
-router.post("/", middleware.isLoggedIn, function(req,res){
-	var caption = req.body.caption;
-	var image = req.body.image;
-	var author =  {
-		id: req.user._id,
-		username: req.user.username
-	}
-
-	var newPhoto = {caption: caption, image: image, author:author}
-	//Create a new photo and save to DB
-	Photo.create(newPhoto, function(err, newlyCreated){
+router.post("/", middleware.isLoggedIn ,function(req,res) {
+	User.findById(req.user._id, function(err,user){
 		if(err){
 			console.log(err);
-		} else {
-			//redirect back to photos page
-			console.log(newlyCreated);
-			res.redirect("/photos");
 		}
-	})
-})
+		var caption = req.body.caption;
+		var image = req.body.image;
+		var newPhoto = {caption:caption, image:image, author:user._id};
+		// console.log(newPhoto);
+		Photo.create(newPhoto, function(err,photo){
+			if(err){
+				console.log(err);
+			}
+			console.log(photo);
+			user.photos.push(photo);
+			user.save();
+			res.redirect('/photos');
+		});
+	});
+});
+
 
 
 module.exports = router;
