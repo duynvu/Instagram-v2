@@ -6,7 +6,7 @@ var express     = require("express"),
     passport    = require("passport"),
     LocalStrategy = require("passport-local"),
     Photo       = require("./models/photo"),
-    // Comment     = require("./models/comment")
+    Comment     = require("./models/comment")
     User        = require("./models/user"),
     methodOverride = require("method-override");
 
@@ -14,6 +14,7 @@ var express     = require("express"),
 var indexRoutes      = require("./routes/index"),
     photoRoutes      = require("./routes/photos"),
     userRoutes       = require("./routes/user");
+    commentRoutes    = require("./routes/comment")
 
 mongoose.connect("mongodb://localhost/instagram-v2", { useNewUrlParser: true });
 
@@ -50,6 +51,8 @@ app.use(function(req, res, next){
 app.use("/", indexRoutes);
 app.use("/photos", photoRoutes);
 app.use("/users",userRoutes);
+app.use("/photos/:id/comments", commentRoutes);
+
 
 app.listen(3000, () => {
     console.log("Server is listening");
