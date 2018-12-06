@@ -4,7 +4,7 @@ var Photo   = require("../models/photo");
 var middleware = require("../middleware");
 var User =  require("../models/user");
 var Follow = require("../models/follow");
-
+var Comment = require("../models/comment");
 
 router.get("/:id",middleware.isLoggedIn, function(req,res) {
 	User
@@ -17,9 +17,12 @@ router.get("/:id",middleware.isLoggedIn, function(req,res) {
 		
 		console.log(req.params.id)
 		
-		//if(currentUser._id.equals(req.user._id)){
+		//if(req.user._id.equals(req.params._id)){
 			res.render("users/index", {user:user});
+		//} else {
+			//res.render("users/user",{user:user});
 		//}
+		
 	});
 });
 
