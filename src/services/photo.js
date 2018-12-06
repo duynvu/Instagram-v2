@@ -1,6 +1,6 @@
 const Photo = require('../models/Photo');
 
-export function getPhotoById(id) {
+export function findPhotoById(id) {
   return Photo.findById(id);
 }
 
