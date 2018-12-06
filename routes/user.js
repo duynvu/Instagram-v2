@@ -1,3 +1,6 @@
+var express = require("express");
+var router  = express.Router();
+var middleware = require("../middleware");
 import {getUser} from '../src/services/user';
 
 const ControllerHandler = (promise, param) => async (req, res, next) => {
@@ -13,13 +16,7 @@ const ControllerHandler = (promise, param) => async (req, res, next) => {
 const c = ControllerHandler;
 
 router.get('/user/:username', c(getUser, (req, res, next) => [req.params.username] ))
-var express = require("express");
-var router  = express.Router();
-var Photo   = require("../models/photo");
-var middleware = require("../middleware");
-var User =  require("../models/user");
-var Follow = require("../models/follow");
-
+router.get('/:id', middleware.isLoggedIn, (req, res, next) => [req.params.id]);
 
 router.get("/:id",middleware.isLoggedIn, function(req,res) {
 	User

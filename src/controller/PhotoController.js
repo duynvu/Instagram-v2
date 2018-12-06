@@ -2,7 +2,7 @@ var Photo   = require("../models/photo");
 var middleware = require("../middleware");
 
 exports.photo_get = (req, res) => {
-  res.render('photos/index', {user: user});
+  res.render('photos/index');
 }
 
 exports.photo_new_get = (req, res) => {
