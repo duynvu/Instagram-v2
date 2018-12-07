@@ -4,6 +4,7 @@ var Photo   = require("../models/photo");
 var middleware = require("../middleware");
 var User =  require("../models/user");
 
+
 //INDEX - show all photos
 router.get("/",middleware.isLoggedIn,function(req,res){
 	console.log(req.user);
@@ -19,27 +20,8 @@ router.get("/new", middleware.isLoggedIn ,function(req,res){
 })
 
 
-//CREATE - add new photo to DB
-// router.post("/", middleware.isLoggedIn, function(req,res){
-// 	var caption = req.body.caption;
-// 	var image = req.body.image;
-// 	var author =  {
-// 		id: req.user._id,
-// 		username: req.user.username
-// 	}
-// 	var newPhoto = {caption: caption, image: image, author:author}
-// 	//Create a new photo and save to DB
-// 	Photo.create(newPhoto, function(err, newlyCreated){
-// 		if(err){
-// 			console.log(err);
-// 		} else {
-// 			//redirect back to photos page
-// 			console.log(newlyCreated);
-// 			res.redirect("/photos");
-// 		}
-// 	})
-// })
 
+//CREATE - create new photo
 router.post("/", middleware.isLoggedIn ,function(req,res) {
 	User.findById(req.user._id, function(err,user){
 		if(err){
