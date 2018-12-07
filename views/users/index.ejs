@@ -68,13 +68,21 @@
                 <div class="col-md-8">
                     <div class="firstUserControl">
                         <span><%= user.username %></span>
-                        <% if(isCurrentUser) { %>
-                        <button type="button" class="settingButtonControl btn btn-light">
-                            Edit profile
-                            <i class="fa fa-cog"></i>
-                        </button>
+                        <% if(isFollow === null) { %>
+                          <button type="button" class="settingButtonControl btn btn-light">
+                              Edit profile
+                              <i class="fa fa-cog"></i>
+                          </button>
                         <% } else { %>
-                            
+                          <% if(isFollow) {%>
+                            <button type="button" id="followBtn" class="btn btn-light">
+                              Unfollow
+                            </button>
+                          <% } else { %>
+                            <button type="button" id="followBtn" class="btn btn-primary">
+                              Follow
+                            </button>
+                          <% } %>
                         <% } %>
 
                     </div>
@@ -109,7 +117,7 @@
     <!-- PHOTO -->
     <section class="photo">
         <div class="container">
-            
+
                 <div class="photoList">
                      <% user.photos.forEach(function(photo){ console.log(photo); %>
                         <a  href="/photos/<%= photo._id %>" >
@@ -120,12 +128,12 @@
                                 </div>
                                 <img src="<%=photo.image%>" class="photo-image" alt="">
                             </div>
-                         
+
                         </a>
-                         
+
                     <% }); %>
                 </div>
-            
+
         </div>
     </section>
     <!-- END PHOTO -->
