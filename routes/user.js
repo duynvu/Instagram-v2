@@ -6,24 +6,32 @@ var User =  require("../models/user");
 var Follow = require("../models/follow");
 var Comment = require("../models/comment");
 
-router.get("/:id",middleware.isLoggedIn, function(req,res) {
-	User
-	  .findById(req.params.id)
-	  .populate("photos")
-	  .exec(function(err, user) {
-		if(err) {
-			console.log(err);
-		}
+router.get("/:id",middleware.isLoggedIn, async function(req,res) {
+	// User
+	//   .findById(req.params.id)
+	//   .populate("photos")
+	//   .exec(function(err, user) {
+	// 	if(err) {
+	// 		console.log(err);
+	// 	}
 		
-		console.log(req.params.id)
+	// 	console.log(req.params.id)
 		
-		//if(req.user._id.equals(req.params._id)){
-			res.render("users/index", {user:user});
-		//} else {
-			//res.render("users/user",{user:user});
-		//}
+	// 	if(req.user._id.equals(req.params.id)){
+	// 		res.render("users/index", {user:user, isCurrentUser: true});
+	// 	} else {
+	// 		res.render("users/index", {user:user, isCurrentUser: false});
+	// 	}
 		
-	});
+	// });
+	const user = await User.findById(req.params.id).populate('photos');
+	if(!req.user._id.equals(req.params.id)) {
+		const isFollow = await Follow.find({$and: [{'follower': req.user._id}, {'followee': req.params.id}]});
+		console.log(isFollow);
+		// res.render("users/index", {user:user, isFollow: isFollow});
+	} else {
+		res.render("user/index", {user:user});
+	}
 });
 
 router.post("/:id/follow", function(req, res) {
