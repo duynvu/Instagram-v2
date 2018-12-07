@@ -10,6 +10,13 @@ export function findFolloweeOfUser(userId) {
                .populate('follower', 'username');
 }
 
+export function findFollowOfUser(userId) {
+  return Follow.find({
+    $or: [{'follower': userId},
+          {'followee': userId}]
+  }).populate('follower', 'followee');
+}
+
 export function createFollow(followerId, followeeId) {
   return Follow.create({
     follower: followerId,

@@ -1,6 +1,7 @@
 import {
   findFolloweeOfUser,
   findFolloweeOfUser,
+  findFollowOfUser,
   createFollow
 } from 'services/follow.js';
 
@@ -10,8 +11,6 @@ export async function addFollow(followerId, followeeId) {
 }
 
 export async function getFollowOfUser(userId) {
-  const followerList = findFolloweeOfUser(userId);
-  const followeeList = findFolloweeOfUser(userId);
-  
-  return Promise.all(followerList, followeeList)l;
+  const followList = await findFollowOfUser(userId);
+  return followList;
 }
