@@ -9,7 +9,14 @@ var UserSchema = new mongoose.Schema({
         validate: [{ validator: validateUsername, msg: 'Username can\'t be blank.'}]
     },
     password: String,
-    fullname: String
+    fullname: String,
+    photos: [
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref: "Photo"
+        }
+    ]
+
 });
 
 UserSchema.plugin(passportLocalMongoose);

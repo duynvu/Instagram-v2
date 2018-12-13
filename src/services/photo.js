@@ -5,17 +5,13 @@ export function findPhotoById(id) {
 }
 
 export async function createPhoto(newPhoto) {
-  try {
-    await Photo.create(newPhoto);
-  } catch(err) {
-    console.log(err);
-  }
+    return Photo.create(newPhoto);
 }
 
-export async function removePhoto(_id) {
-  try {
-    await Photo.remove({_id});
-  } catch(err) {
-    console.log(err);
-  }
+export function removePhoto(_id) {
+    return Photo.remove({_id});
+}
+
+export function getPhotoOfUser(userId) {
+    return Photo.find({"author": userId});
 }
