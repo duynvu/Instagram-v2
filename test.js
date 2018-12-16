@@ -8,7 +8,8 @@ mongoose.connect("mongodb://localhost/instagram-v2", { useNewUrlParser: true });
 
 async function test(){
   // const userList = User.find();
-  const fList = Follow.find().populate({path:"follower", populate:{"photos"}});
+  const fList = await Follow.find().populate({path:"followee", populate:{path:"photos"}}).map(f => f.followee);
+  const pList = fList.reduce((list,f) => list.concat(f.photos), []);
 
    //const result = await Promise.all(fList.map(f => f.populate("photos")));
   //Photo.create(newPhoto, function(err,photo){
@@ -21,7 +22,7 @@ async function test(){
     //res.redirect('/photos');
   //});
 
-  console.log(await fList);
+  console.log(fList);
 
 }
 test();

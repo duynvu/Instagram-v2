@@ -1,19 +1,17 @@
 var express     = require("express"),
-    app         = express();
+    app         = express(),
     bodyParser  = require("body-parser"),
     mongoose    = require("mongoose"),
     flash       = require("connect-flash"),
     passport    = require("passport"),
     LocalStrategy = require("passport-local"),
-    Photo       = require("./models/photo"),
     // Comment     = require("./models/comment")
-    User        = require("./models/user"),
     methodOverride = require("method-override");
 
 //requring routes
 var indexRoutes      = require("./routes/index"),
-    photoRoutes      = require("./routes/photos"),
-    userRoutes       = require("./routes/user");
+    photoRoutes      = require("./routes/photos");
+    // userRoutes       = require("./routes/user");
 
 mongoose.connect("mongodb://localhost/instagram-v2", { useNewUrlParser: true });
 
@@ -49,7 +47,7 @@ app.use(function(req, res, next){
 
 app.use("/", indexRoutes);
 app.use("/photos", photoRoutes);
-app.use("/users",userRoutes);
+// app.use("/users",userRoutes);
 
 app.listen(3000, () => {
     console.log("Server is listening");
