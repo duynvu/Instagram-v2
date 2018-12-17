@@ -8,7 +8,12 @@ var User =  require("../models/user");
 //INDEX - show all photos
 router.get("/",middleware.isLoggedIn,function(req,res){
 	console.log(req.user);
-	res.render("photos/index",{currentUser:req.user});
+	const followeeList = await Follow.find("follower":req.user.username)
+																	 .populate({ path:"followee",
+																							 populate: { path:"photos" }})
+																	 .map(f => f.followee);
+	const photoList = followeeList.reduce((list,f) => list.concat(f.photos), []);
+	res.render("home",{photos: photoList});
 });
 
 
