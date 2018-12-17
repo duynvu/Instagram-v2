@@ -1,4 +1,4 @@
-var express = require('express');
+var express = require("express");
 var router  = express.Router({mergeParams: true});
 var Photo   = require("../models/photo");
 var Comment = require("../models/comment");
@@ -6,7 +6,7 @@ var middleware = require("../middleware");
 
 
 
-
+//Comment Create
 router.post("/",middleware.isLoggedIn,function(req, res){
 	Photo.findById(req.params.id, function(err, photo){
 		if(err){
@@ -22,7 +22,7 @@ router.post("/",middleware.isLoggedIn,function(req, res){
 					comment.author.username = req.user.username;
 					//save comment
 					comment.save();
-					photo.comments.push(comment);
+					photo.comments.push(comment._id);
 					photo.save();
 					console.log(comment);
 					req.flash("success","Successfully added comment");
@@ -32,3 +32,5 @@ router.post("/",middleware.isLoggedIn,function(req, res){
 		}
 	});
 });
+
+module.exports = router;

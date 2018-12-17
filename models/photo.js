@@ -32,3 +32,4 @@ var photoSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model("Photo",photoSchema);
+
