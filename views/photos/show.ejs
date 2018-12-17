@@ -86,10 +86,11 @@
                         <span>APRIL 6</span>
                     </div>
                     <div class="comment-section">
-                        <div class="form-group">
-                          <label for=""></label>
-                          <textarea class="form-control" name="" id="" rows="1" placeholder="Add a comment..."></textarea>
-                        </div>
+                        <form action="/photos/<%= photo._id %>/comments" method="POST">
+                            <div class="form-group">
+                              <input  type="text" class="form-control" name="comment[text]"  rows="1" placeholder="Add a comment...">
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
