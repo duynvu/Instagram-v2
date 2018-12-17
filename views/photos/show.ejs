@@ -66,18 +66,34 @@
                 <div class="col-md-5 infor">
                     <div class="infor-user">
                         <img class="img-circle" src="../image/user_avatar.jpg" alt="">
-                        <span><%= photo.author.username %></span>
+                        <span>
+                            <%= photo.author.username %></span>
                     </div>
                     <div class="infor-post">
-                        <span id="user-name"><%= photo.author.username %></span>
-                        <span><%= photo.caption %></span>
+                        <span id="user-name">
+                            <%= photo.author.username %></span>
+                        <span>
+                            <%= photo.caption %></span>
                         <br>
                         <% photo.comments.forEach(function(comment){ %>
-                            <span id="user-name"><%= comment.author.username %></span>
-                            <span><%= comment.text %></span>
-                            <br>
+                        <span id="user-name">
+                            <%= comment.author.username %></span>
+                        <span>
+                            <%= comment.text %></span>
+                        <br>
                         <% }) %>
-                        
+                        <span id="user-name">princess_petty_betty</span>
+                        <span> Hot and hotter</span>   
+                        <br>
+                        <span id="user-name">marcellamsantos</span>
+                        <span>😍❤️👏🔝</span>   
+                        <br>
+                        <span id="user-name">deathlyparadox</span>
+                        <span>Snack</span>  
+                        <br> 
+                        <span id="user-name">jellyfish10124Are</span>
+                        <span> u trying to ruin a funeral</span>
+
                     </div>
                     <div class='infor-more'>
                         <i class="fa fa-heart-o"></i>
@@ -86,10 +102,12 @@
                         <span>APRIL 6</span>
                     </div>
                     <div class="comment-section">
-                        <div class="form-group">
-                          <label for=""></label>
-                          <textarea class="form-control" name="" id="" rows="1" placeholder="Add a comment..."></textarea>
-                        </div>
+                        <form action="">
+                            <div class="form-group">
+                                <label for=""></label>
+                                <textarea class="form-control" name="" id="" rows="1" placeholder="Add a comment..."></textarea>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
