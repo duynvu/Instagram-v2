@@ -11,7 +11,7 @@ router.get("/",middleware.isLoggedIn,function(req,res){
 	const followeeList = await Follow.find("follower":req.user.username)
 																	 .populate({ path:"followee",
 																							 populate: { path:"photos" }})
-																	 .map(f => f.followee);
+																	 .then(list => list.map(f => f.followee))
 	const photoList = followeeList.reduce((list,f) => list.concat(f.photos), []);
 	res.render("home",{photos: photoList});
 });
