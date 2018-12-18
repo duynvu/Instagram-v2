@@ -16,7 +16,7 @@ router.get("/register",function(req,res){
 });
 //handle sign up logic
 router.post("/register", function(req, res){
-    var newUser = new User({
+    var newUser = new User({ 
         username: req.body.username,
         fullname: req.body.fullname,
         image:    req.body.image
@@ -50,15 +50,9 @@ router.post("/login", passport.authenticate("local",
 router.get("/logout",function(req,res){
     req.logout();
     req.flash("success","Logged you out!");
-    res.redirect("/photos");
+    res.redirect("/");
 })
 
-//middleware
-// function isLoggedIn(req, res, next){
-//     if(req.isAuthenticated()){
-//         return next();
-//     }
-//     res.redirect("/login");
-// }
+
 
 module.exports = router;
