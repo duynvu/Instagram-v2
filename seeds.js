@@ -7,19 +7,19 @@ var Follow = require("./models/follow");
 mongoose.connect("mongodb://localhost/instagram-v2", { useNewUrlParser: true });
 
 
-data = {
+const data = {
 	users: [{
 			  "username": "quangloc",
 			  "fullname": "Pham Quang Loc"
 			}, {
-			  "username": "pwinram1",
-			  "fullname": "Pieter Winram"
+			  "username": "duy",
+			  "fullname": "Nguyen Vu Duy"
 			}, {
-			  "username": "chulls2",
-			  "fullname": "Carleen Hulls"
+			  "username": "vuduy",
+			  "fullname": "Vu Duy"
 			}, {
-			  "username": "cfosserd3",
-			  "fullname": "Celinka Fosserd"
+			  "username": "trungdoan",
+			  "fullname": "Trung Mat Lon"
 			}, {
 			  "username": "ovondra4",
 			  "fullname": "Orrin Vondra"
@@ -70,24 +70,24 @@ data = {
 			}, {
 			  "image": "http://dummyimage.com/365x177.jpg/5fa2dd/ffffff",
 			  "caption": "ut dolor"
-			}]	
+			}]
 }
 
 async function seed() {
 	// Drop Database
 	await Promise.all([
-		User.remove({}), 
-		Photo.remove({}), 
-		Follow.remove({}), 
+		User.remove({}),
+		Photo.remove({}),
+		Follow.remove({}),
 		Comment.remove({})
 	]);
 
 	// Add users
 	const users = await Promise.all(data.users.map(u => User.register(u, '123')));
-	
-	const usersId = users.map((p, index) => index % 3);
+	console.log("Finish add users.");
 
 	// Add photos
+	const usersId = users.map((p, index) => index % 3);
 	const photos = await Promise.all(
 		data.photos.map((p, index) => Photo.create(
 			{
@@ -97,11 +97,45 @@ async function seed() {
 					username: users[usersId[index]].username
 				}
 			}
-		)))
+		)));
+	for (let photo of photos) {
+		var u = users.find(u => u._id === photo.author.id)
+		u.photos.push(photo._id);
+		await u.save();
+	}
+
+	console.log("Finish add photos.");
 
 	// Add follow
-	const follows = await Promise.all()
-	console.log(photos);
+	const follow = [
+		{
+			follower: users[0]._id,
+			followee: users[1]._id,
+		},
+		{
+			follower: users[0]._id,
+			followee: users[2]._id,
+		},
+		{
+			follower: users[1]._id,
+			followee: users[0]._id,
+		},
+		{
+			follower: users[1]._id,
+			followee: users[2]._id,
+		},
+		{
+			follower: users[2]._id,
+			followee: users[0]._id,
+		},
+		{
+			followee: users[2]._id,
+			follower: users[1]._id,
+		},
+	]
+
+	const followList = await Promise.all(follow.map(f => Follow.create(f)));
+	console.log("Finish add follows.");
 }
 
 seed();

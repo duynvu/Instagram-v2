@@ -1,19 +1,26 @@
 var express = require("express");
 var router  = express.Router();
-var Photo   = require("../models/photo");
 var middleware = require("../middleware");
+
+var Photo   = require("../models/photo");
 var User =  require("../models/user");
+var Follow = require("../models/follow");
 
 
 //INDEX - show all photos
-router.get("/",middleware.isLoggedIn,function(req,res){
-	console.log(req.user);
-	const followeeList = await Follow.find("follower":req.user.username)
-																	 .populate({ path:"followee",
-																							 populate: { path:"photos" }})
-																	 .then(list => list.map(f => f.followee))
-	const photoList = followeeList.reduce((list,f) => list.concat(f.photos), []);
-	res.render("home",{photos: photoList});
+router.get("/",middleware.isLoggedIn, async function(req,res){
+  const user = await User.findById(req.user._id).populate('photos');
+
+  const fList = await Follow
+    .find({"follower": user._id})
+    .populate({path: "followee", populate: {path: "photos"}})
+    .then(list => list.map(f => f.followee.photos));
+
+  const photos = [].concat(...fList, ...user.photos)
+                      .sort((a,b) => a._id.getTimestamp > b._id.getTimestamp);
+
+	res.render('home', {photos: photos})
+
 });
 
 
