@@ -106,8 +106,8 @@ html{
 }
 
 .background {
-    background-image: url(../../public/image/login\ registration.jpg);
-    width: 100%;
+	width: 100%;
+    background-image: url(../../image/login_registration.jpg);
     height: 38rem;
     background-repeat: no-repeat;
     background-size: cover;

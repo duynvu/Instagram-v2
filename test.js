@@ -6,23 +6,28 @@ const Follow = require('./models/follow');
 
 mongoose.connect("mongodb://localhost/instagram-v2", { useNewUrlParser: true });
 
-async function test(){
+(async () => {
   // const userList = User.find();
-  const fList = await Follow.find().populate({path:"followee", populate:{path:"photos"}}).map(f => f.followee);
-  const pList = fList.reduce((list,f) => list.concat(f.photos), []);
+  const user = await User.findOne({username: "duy"}).populate('photos');
+  // const user = user[0];
 
-   //const result = await Promise.all(fList.map(f => f.populate("photos")));
-  //Photo.create(newPhoto, function(err,photo){
-    //if(err){
-      //console.log(err);
-    //}
-    //console.log(photo);
-    //user.photos.push(photo);
-    //user.save();
-    //res.redirect('/photos');
-  //});
+  const fList = await Follow
+    .find({"follower": user._id})
+    .populate({path: "followee", populate: {path: "photos"}})
+    .then(list => list.map(f => f.followee.photos));
+                            // .populate(
+                            //   {path:"follower",
+                            //     populate:
+                            //       {path:"photos",
+                            //         populate: {path:"author"}}});
+                            // .then(list => list.map(f => f.followee.photos));
+  // const pList = fList.map(f => f.photos)
+  // const user = await User.find({username: "duy"}).populate('photos');
 
-  console.log(fList);
 
-}
-test();
+  const photoList = [].concat(...fList, ...user.photos).sort((a,b) => a._id.getTimestamp > b._id.getTimestamp);
+  photoList.forEach(p => {
+    console.log(p._id.getTimestamp());
+    console.log(p);
+  })
+})()

@@ -5,13 +5,16 @@ var express     = require("express"),
     flash       = require("connect-flash"),
     passport    = require("passport"),
     LocalStrategy = require("passport-local"),
-    // Comment     = require("./models/comment")
+    Photo       = require("./models/photo"),
+    Comment     = require("./models/comment")
+    User        = require("./models/user"),
     methodOverride = require("method-override");
 
 //requring routes
 var indexRoutes      = require("./routes/index"),
-    photoRoutes      = require("./routes/photos");
-    // userRoutes       = require("./routes/user");
+    photoRoutes      = require("./routes/photos"),
+    userRoutes       = require("./routes/user"),
+    commentRoutes    = require("./routes/comment");
 
 mongoose.connect("mongodb://localhost/instagram-v2", { useNewUrlParser: true });
 
@@ -47,8 +50,10 @@ app.use(function(req, res, next){
 
 app.use("/", indexRoutes);
 app.use("/photos", photoRoutes);
-// app.use("/users",userRoutes);
+app.use("/users",userRoutes);
+app.use("/photos/:id/comments", commentRoutes);
 
-app.listen(3000, () => {
+
+app.listen(process.env.PORT || 3000, () => {
     console.log("Server is listening");
 })

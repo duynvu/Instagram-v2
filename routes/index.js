@@ -19,7 +19,7 @@ router.post("/register", function(req, res){
     var newUser = new User({
         username: req.body.username,
         fullname: req.body.fullname,
-        image: req.body.image
+        image:    req.body.image
     });
     User.register(newUser, req.body.password, function(err, user){
         if(err){
@@ -47,11 +47,11 @@ router.post("/login", passport.authenticate("local",
 });
 
 //logout route
-// router.get("/logout",function(req,res){
-//     req.logout();
-//     req.flash("success","Logged you out!");
-//     res.redirect("/photos");
-// })
+router.get("/logout",function(req,res){
+    req.logout();
+    req.flash("success","Logged you out!");
+    res.redirect("/photos");
+})
 
 //middleware
 // function isLoggedIn(req, res, next){

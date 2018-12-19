@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="../stylesheets/home.css">
+    <link rel="stylesheet" href="./stylesheets/home.css">
 </head>
 
 <body>
@@ -21,10 +21,10 @@
                 <div class="col-xl-4">
                     <div class="row">
                         <a class="navbar-brand" href="#">
-                            <img src="../image/insta logo.png" alt="">
+                            <img src="./image/insta logo.png" alt="">
                         </a>
                         <a class="insta-header" href="#">
-                            <img src="../image/instagram header.png" alt="">
+                            <img src="./image/instagram header.png" alt="">
                         </a>
                     </div>
                 </div>
@@ -43,13 +43,10 @@
                     </div>
                 </div>
                 <div class="col-xl-4 navbar-right">
-                    <div class="buttonControl"> 
+                    <div class="buttonControl">
                         <i class="fa fa-compass"></i>
                         <i class="fa fa-heart-o"></i>
-
-                        <a href="/users/<%= currentUser._id %>">
-                            <i class="fa fa-user-o"></i>
-                        </a>
+                        <a style="color: black" class="fa fa-user-o" href="/users/<%= currentUser._id %>"></a>
                         <i class="fa fa-sign-out"></i>
                     </div>
                 </div>
@@ -64,11 +61,11 @@
         <div class="container">
             <div class="content">
                 <div class="user-infor">
-                    <img src="../image/user_avatar.jpg" alt="">
+                    <img src="./image/user_avatar.jpg" alt="">
                     <span>hanhhh.hil</span>
                 </div>
                 <div class="picture">
-                    <img src="../image/photo_item5.jpg" alt="">
+                    <img src="./image/photo_item5.jpg" alt="">
                 </div>
                 <div class="post-infor">
                     <div class="post-infor-first">
@@ -79,22 +76,31 @@
                             facilis, quos totam est temporibus asperiores esse. Voluptas, accusantium eligendi! Dolor
                             neque a maxime nesciunt perspiciatis fuga? Repellendus atque suscipit ipsa.</p>
                     </div>
-                    <div class="comment">
-                        <span>Load more comments</span>
-                        <p><span>hiheeheee.aaa</span>Beautiful</p>
-                        <p><span>misssupranational</span>I just leave it here</p>
-                        <p><span>kytstillyoung</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum
-                            voluptates maiores voluptatem deleniti ullam. Sed ipsa ut quisquam minima iusto!</p>
-                        <p>4 hours ago</p>
-                    </div>
-                    <div class="comment-section">
-                        <div class="form-group">
-                              <label for=""></label>
-                              <textarea class="form-control" name="" id="" rows="1" placeholder="Add a comment..."></textarea>
-                            </div>
-                    </div>
                 </div>
             </div>
+            <% photos.map(p => { %>
+              <div class="content">
+                  <div class="user-infor">
+                      <img src="./image/user_avatar.jpg" alt="">
+                      <span><%= p.author.username %></span>
+                  </div>
+                  <div class="picture">
+                      <img src="<%= p.image %>" alt="">
+                  </div>
+                  <div class="post-infor">
+                      <div class="post-infor-first">
+                          <i class="fa fa-heart-o"></i>
+                          <i class="fa fa-comment-o"></i>
+                          <p>23 likes</p>
+                          <p>
+                            <span><%= p.author.username %></span>
+                            <%= p.caption %>
+                          </p>
+                      </div>
+                  </div>
+              </div>
+
+            <% }) %>
         </div>
     </section>
 
