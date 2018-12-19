@@ -1,4 +1,4 @@
-export function validateUsername(username) {
+exports.validateUsername = (username) => {
     if(username==='') {
         return false;
     }

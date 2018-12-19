@@ -1,19 +1,27 @@
-const User = require('../models/User');
-const PhotoService = require('./photos.js');
+const UserModel = require('../models/User');
 
 class UserService {
-  static getUserByUsername(user) {
-    return User.find({username});
+  // All functions return Promise.
+
+  static getUserByUsername(username) {
+    return User.findOne({username});
   }
 
   static getUserById(id) {
     return User.findById(id);
   }
 
+  static getUserWithPhotos(id) {
+    return User.findById(id).populate("photos");
+  }
 
+  static registerUser(newUser, password) {
+    return User.register(newUser,password);
+  }
+}
 
-
-  static
+module.exports = {
+  UserService,
 }
 //
 // export function getUser(username) {

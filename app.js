@@ -5,16 +5,14 @@ var express     = require("express"),
     flash       = require("connect-flash"),
     passport    = require("passport"),
     LocalStrategy = require("passport-local"),
-    Photo       = require("./models/photo"),
-    Comment     = require("./models/comment")
-    User        = require("./models/user"),
+    User = require("./src/models/User");
     methodOverride = require("method-override");
 
 //requring routes
-var indexRoutes      = require("./routes/index"),
-    photoRoutes      = require("./routes/photos"),
-    userRoutes       = require("./routes/user"),
-    commentRoutes    = require("./routes/comment");
+var indexRoutes      = require("./routes/index");
+    // photoRoutes      = require("./routes/photos"),
+    // userRoutes       = require("./routes/user"),
+    // commentRoutes    = require("./routes/comment");
 
 mongoose.connect("mongodb://localhost/instagram-v2", { useNewUrlParser: true });
 
@@ -39,7 +37,6 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-
 app.use(function(req, res, next){
     res.locals.currentUser = req.user;
     res.locals.error   = req.flash("error");
@@ -49,9 +46,9 @@ app.use(function(req, res, next){
 
 
 app.use("/", indexRoutes);
-app.use("/photos", photoRoutes);
-app.use("/users",userRoutes);
-app.use("/photos/:id/comments", commentRoutes);
+// app.use("/photos", photoRoutes);
+// app.use("/users", userRoutes);
+// app.use("/photos/:id/comments", commentRoutes);
 
 
 app.listen(process.env.PORT || 3000, () => {
