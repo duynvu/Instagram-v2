@@ -48,6 +48,14 @@ html{
 /* END HEADER CSS */
 
 /* USER POST CSS */
+.form-group{
+    margin-bottom: 0 !important;
+}
+
+.content{
+    margin-bottom: 3rem !important;
+}
+
 .user-post .content{
     width: 70%;
     margin: 0 auto;
