@@ -1,9 +1,7 @@
-var Photo = require("../src/models/Photo");
+// const Photo = require("../models/Photo");
 
 
 var middlewareObj = {};
-
-
 
 middlewareObj.isLoggedIn = function(req, res, next){
     if(req.isAuthenticated()){

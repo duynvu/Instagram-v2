@@ -1,4 +1,4 @@
-const UserModel = require('../models/User');
+const User = require('../models/User');
 
 class UserService {
   // All functions return Promise.
