@@ -96,21 +96,17 @@
                 </div>
                 <div class="post-infor">
                     <div class="post-infor-first">
-                        <% id (!checkLiked) { %>
-                            <form action="/photos/<%= photo._id %>/likes" method="POST>
-                                <button>
-                                    <i style="color: black" class="fa fa-heart-o"></i>
-                                </button>
-                            </form>
+
+                        <% if (p.likes.filter(id => id.toString() == currentUser._id.toString()).length !== 0) { %>
+                            <i id="btn<%=p._id %>" class="fa fa-heart text-danger" onclick="handleLike(this)"></i>
                         <% } else { %>
-                            <form action ="photos/<%= photo._id %>/likes" method="POST">
-                                <button>
-                                    <i style="color: red" class="fa fa-heart-o"></i>
-                                </button>
-                            </form>
+                            <i id="btn<%=p._id %>" class="fa fa-heart-o" onclick="handleLike(this)"></i>
                         <% } %>
+                            
+                        
+
                         <i class="fa fa-comment-o"></i>
-                        <p><%= likeList.length %>s likes</p>
+                        <p><span id="like<%=p._id %>" ><%= p.likes.length %></span>likes</p>
                         <p>
                             <span>
                                 <%= p.author.username %></span>
@@ -121,7 +117,7 @@
             </div>
 
             <% }) %>
-            
+
         </div>
     </section>
 
@@ -135,6 +131,9 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="/javascripts/home.js"></script>
+
 </body>
 
 </html>

@@ -12,11 +12,24 @@ router.post("/",middleware.isLoggedIn,function(req, res){
 	Photo.findById(req.params.id, function(err, photo){
 		if(err){
 			console.log(err);
-			res.redirect("/photos");
+			res.sendStatus(500);
 		} else {
-			const likeList = photo.likes.push(req.user._id);
+			photo.likes.push(req.user._id);
 			photo.save();
-			res.redirect("/photos");
+			res.sendStatus(200);
+		}
+	});
+});
+
+router.delete("/",middleware.isLoggedIn,function(req, res){
+	Photo.findById(req.params.id, function(err, photo){
+		if(err){
+			console.log(err);
+			res.sendStatus(500);
+		} else {
+			photo.likes = photo.likes.filter(id => id.toString() !== req.user._id.toString());
+			photo.save();
+			res.sendStatus(200);
 		}
 	});
 });
