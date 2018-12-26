@@ -1,24 +1,27 @@
 var Photo = require("../models/photo");
 var middleware = require("../middleware");
 
-exports.get = (req, res, next) => {
+exports.get = async (req, res, next) => {
   res.render('photos/index');
 }
 
-exports.get_new = (req, res, next) => {
+exports.get_new = async (req, res, next) => {
   res.render('photos/new');
 }
 
-exports.post = (req,res) => {
-  var caption = req.body.caption;
-	var image = req.body.image;
-	var author =  {
+exports.post = async (req,res, next) => {
+  const caption = req.body.caption;
+	const image = req.body.image;
+	const author =  {
 		id: req.user._id,
 		username: req.user.username
 	}
 
-	var newPhoto = {caption: caption, image: image, author:author}
+	const newPhoto = {caption: caption, image: image, author:author}
 	//Create a new photo and save to DB
+	// try {
+	// 	PhotoService.create
+	// }
 	Photo.create(newPhoto, function(err, newlyCreated){
 		if(err){
 			console.log(err);
@@ -28,6 +31,17 @@ exports.post = (req,res) => {
 			res.redirect("/photos");
 		}
 	})
+}
+
+exports.get_id = async (req, res, next) => {
+	Photo.findById(req.params.id).populate("comments").exec(function(err,foundPhoto){
+		if(err){
+			console.log(err);
+		} else {
+			console.log(foundPhoto);
+			res.render("photos/show",{photo: foundPhoto});
+		}
+	});
 }
 
 exports.photo_delete = (req, res) => {

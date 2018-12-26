@@ -21,6 +21,6 @@ const UserController = require("../src/controller/UserController");
 router.get("/:id", middleware.isLoggedIn, UserController.get_id);
 
 router.post("/:id/follow", UserController.post_follow);
-router.delete("/:id/follow", UserController.remove_follow);
+router.delete("/:id/follow", UserController.delete_follow);
 
 module.exports = router;

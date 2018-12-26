@@ -10,9 +10,8 @@ var express     = require("express"),
 
 //requring routes
 var indexRoutes      = require("./routes/index"),
-    userRoutes       = require("./routes/user");
-
-    // photoRoutes      = require("./routes/photos"),
+    userRoutes       = require("./routes/user"),
+    photoRoutes      = require("./routes/photos");
     // userRoutes       = require("./routes/user"),
     // commentRoutes    = require("./routes/comment");
 
@@ -48,7 +47,7 @@ app.use(function(req, res, next){
 
 
 app.use("/", indexRoutes);
-// app.use("/photos", photoRoutes);
+app.use("/photos", photoRoutes);
 app.use("/users", userRoutes);
 // app.use("/photos/:id/comments", commentRoutes);
 

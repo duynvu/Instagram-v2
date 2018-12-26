@@ -30,5 +30,6 @@ class FollowService {
     return Follow.remove({
       follower: followerId,
       followee: followeeId
-    }}
+    })
+  }
 }
