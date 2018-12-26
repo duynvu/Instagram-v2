@@ -18,24 +18,12 @@ class UserService {
   static registerUser(newUser, password) {
     return User.register(newUser,password);
   }
+
+  static save(user) {
+    return user.save();
+  }
 }
 
 module.exports = {
   UserService,
 }
-//
-// export function getUser(username) {
-//   return User.find({username}); // return promise
-// }
-//
-// export function getUserById(id) {
-//   return User.findById(id);
-// }
-//
-// export function updateUserById(id, user) {
-//   return User.findById(id, user);
-// }
-//
-// export function getUserWithPhotos(id) {
-//     return User.findById(id).populate("photos");
-// }

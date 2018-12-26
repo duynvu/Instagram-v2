@@ -1,17 +1,27 @@
 const Photo = require('../models/Photo');
 
-export function findPhotoById(id) {
-  return Photo.findById(id);
-}
+class PhotoService {
+	static findPhoto(id) {
+		return Photo.findById(id);
+	}
+	
+	static findPhotoWithComments(id) {
+		return Photo.findById(id).populate('comments');
+	}
 
-export async function createPhoto(newPhoto) {
-    return Photo.create(newPhoto);
-}
+	static findPhotoWithLikes(id) {
+		return Photo.findById(id).populate('likes');
+	}
 
-export function removePhoto(_id) {
-    return Photo.remove({_id});
-}
+	static findPhotoWithFullInformation(id) {
+		return Photo.findById(id).populate('likes', 'comments');
+	}
+	
+	static create(photo) {
+		return Photo.create(photo);
+	}
 
-export function getPhotoOfUser(userId) {
-    return Photo.find({"author": userId});
+	static remove(id) {
+		return Photo.remove(id);
+	}
 }

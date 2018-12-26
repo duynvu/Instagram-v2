@@ -19,7 +19,7 @@ exports.get_id = async (req, res, next) => {
     followerList, 
     followeeList});
   } catch(e) {
-    console.log(err);
+    console.log(e);
     res.redirect('/');
   }
 }
