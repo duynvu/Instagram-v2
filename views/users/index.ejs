@@ -20,7 +20,7 @@
             <nav class="navbar navbar-expand-md navbar-light ">
                 <div class="col-xl-4">
                     <div class="row">
-                        <a class="navbar-brand" href="#">
+                        <a class="navbar-brand" href="/photos/new">
                             <img src="../image/insta logo.png " alt="">
                         </a>
                         <a class="insta-header" href="/photos">
@@ -69,10 +69,12 @@
                     <div class="firstUserControl">
                         <span><%= user.username %></span>
                         <% if(isFollow === null) { %>
-                          <button type="button" class="settingButtonControl btn btn-light">
-                              Edit profile
-                              <i class="fa fa-cog"></i>
-                          </button>
+                            <a href="/users/<%= currentUser._id %>/edit">
+                                <button type="button" class="settingButtonControl btn btn-light">
+                                  Edit profile
+                                  <i class="fa fa-cog"></i>
+                                </button>
+                            </a>
                         <% } else { %>
                           <% if(isFollow) {%>
                             <button type="button" id="followBtn" class="btn btn-light">
@@ -125,9 +127,7 @@
                                 </div>
                                 <img src="<%=photo.image%>" class="photo-image" alt="">
                             </div>
-
                         </a>
-
                     <% }); %>
                 </div>
         </div>

@@ -13,23 +13,22 @@ var photoSchema = new mongoose.Schema({
 	comments: [
 		{
 			type: mongoose.Schema.Types.ObjectId,
-			ref:"Comment"
+			ref: "Comment"
+		}
+	],
+
+	likes: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "User"
 		}
 	]
-
-// 	likes: [
-// 		{
-// 			type: mongoose.Schema.Types.ObjectId,
-// 			ref:"Like"
-// 		}
-// 	],
 // 	photo_tag: [
 // 		{
 // 			type: mongoose.Schema.Types.ObjectId,
 // 			ref:"Photo_tag"
 // 		}
-// 	] 
+// 	]
 });
 
 module.exports = mongoose.model("Photo",photoSchema);
-

@@ -23,4 +23,26 @@ router.get("/:id", middleware.isLoggedIn, UserController.get_id);
 router.post("/:id/follow", UserController.post_follow);
 router.delete("/:id/follow", UserController.delete_follow);
 
+//UPDATE 
+router.get("/:id/edit", function(req,res){
+	User.findById(req.params.id, function(err, foundUser){
+		if(err){
+			res.redirect("/users" + req.params.id);
+		} else {
+			res.render("users/edit", {user: foundUser});
+		}
+	});
+});
+
+router.put("/:id", function(req,res){
+	User.findByIdAndUpdate(req.params.id, req.body.user , function(err, updatedUser){
+		if(err){
+			console.log(err);
+		} else {
+			console.log(updatedUser);
+			res.redirect("/users/" + req.params.id);
+		}
+	});
+
+});
 module.exports = router;

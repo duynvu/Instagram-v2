@@ -19,12 +19,4 @@ router.post("/login", passport.authenticate("local",
 //logout route
 router.get("/logout", IndexController.get_logout);
 
-//middleware
-// function isLoggedIn{
-//     if(req.isAuthenticated()){
-//         return next();
-//     }
-//     res.redirect("/login");
-// }
-
 module.exports = router;
