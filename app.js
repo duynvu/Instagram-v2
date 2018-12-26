@@ -14,7 +14,8 @@ var express     = require("express"),
 var indexRoutes      = require("./routes/index"),
     photoRoutes      = require("./routes/photos"),
     userRoutes       = require("./routes/user"),
-    commentRoutes    = require("./routes/comment");
+    commentRoutes    = require("./routes/comment")
+    likeRoutes       = require("./routes/like");
 
 mongoose.connect("mongodb://localhost/instagram-v2", { useNewUrlParser: true });
 
@@ -23,6 +24,7 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
+// seedDB();
 
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
@@ -52,6 +54,7 @@ app.use("/", indexRoutes);
 app.use("/photos", photoRoutes);
 app.use("/users",userRoutes);
 app.use("/photos/:id/comments", commentRoutes);
+app.use("/photos/:id/likes", likeRoutes);
 
 
 app.listen(process.env.PORT || 3000, () => {
