@@ -75,7 +75,20 @@
                 </div>
                 <div class="post-infor">
                     <div class="post-infor-first">
-                        <i class="fa fa-heart-o"></i>
+                        <% id (!checkLiked) { %>
+                            <form action="/photos/<%= photo._id %>/likes" method="POST>
+                                <button>
+                                    <i style="color: black" class="fa fa-heart-o"></i>
+                                </button>
+                            </form>
+                        <% } else { %>
+                        <form action ="photos/<%= photo._id %>/likes" method="POST">
+                            <button>
+                                <i style="color: red" class="fa fa-heart-o"></i>
+                            </button>
+                        </form>
+                        <% } %>
+                        
                         <i class="fa fa-comment-o"></i>
                         <p>23 likes</p>
                         <p><span>csasonic2</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum
@@ -113,4 +126,4 @@
         crossorigin="anonymous"></script>
 </body>
 
-</html>
+</html> 
