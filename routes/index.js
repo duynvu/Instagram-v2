@@ -4,15 +4,49 @@ var passport = require("passport");
 var User = require("../models/user");
 
 
+var Photo   = require("../models/photo");
+var Follow = require("../models/follow");
+
+
 //root route
-router.get('/', function(req, res) {
-    res.render("landing");
-})
+router.get('/', async function(req, res) {
+    if (!req.user) {
+        res.render("landing");
+    } else {
+        const user = await User.findById(req.user._id).populate('photos');
+
+      const fList = await Follow
+        .find({"follower": user._id})
+        .populate({path: "followee", populate: {path: "photos"}})
+        .then(list => list.map(f => f.followee.photos));
+
+      const photos = [].concat(...fList, ...user.photos)
+                          .sort((a,b) => a._id.getTimestamp > b._id.getTimestamp);
+
+      for (var p of photos) {
+        if (p.likes.length !== 0) {
+          console.log(p.likes[0].toString());
+          console.log(typeof p.likes[0].toString());
+          console.log(req.user._id.toString());
+          console.log(typeof req.user._id.toString());
+
+        //   console.log(p.likes[0].toString() == req.user._id.toString());
+          console.log(p.likes.filter(id => id.toString() == req.user._id.toString()));
+
+        }
+      }
+        res.render('home', {photos: photos})
+    }
+});
 
 
 // show register form
 router.get("/register",function(req,res){
-    res.render("registration");
+    if (req.user) {
+        res.redirect('/');
+    } else {
+        res.render("registration");
+    }
 });
 //handle sign up logic
 router.post("/register", function(req, res){
@@ -28,19 +62,23 @@ router.post("/register", function(req, res){
         }
         passport.authenticate("local")(req, res, function(){
            req.flash("success", "Welcome to Instagram " + user.username);
-           res.redirect("/photos"); 
+           res.redirect("/homepage"); 
         });
     });
 });
 
 //show login form
 router.get("/login",function(req,res){
-    res.render("login");
+    if(req.user){
+        res.redirect("/");
+    } else {
+        res.render("login")
+    }
 });
 // handling login logic
 router.post("/login", passport.authenticate("local",
     {
-        successRedirect: "/photos",
+        successRedirect: "/",
         failureRedirect: "/login"
     }), function(req,res){
         req.flash("success", "Welcome to Instagram " + user.username);

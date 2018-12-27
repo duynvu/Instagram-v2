@@ -8,6 +8,10 @@ var UserSchema = new mongoose.Schema({
     },
     password: String,
     fullname: String,
+    avatar: {
+        type: String,
+        default: '../imge/user_avatar.jpg'
+    },
     photos: [
     	{
     		type: mongoose.Schema.Types.ObjectId,

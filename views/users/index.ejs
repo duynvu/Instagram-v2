@@ -1,5 +1,4 @@
 <html lang="en">
-<% const id=user._id; const url=`/${id}/follow` %> %>
 <head>
     <title>Instagram</title>
     <!-- Required meta tags -->
@@ -23,7 +22,7 @@
                         <a class="navbar-brand" href="/photos/new">
                             <img src="../image/insta logo.png " alt="">
                         </a>
-                        <a class="insta-header" href="/photos">
+                        <a class="insta-header" href="/">
                             <img src="../image/instagram header.png" alt="">
                         </a>
                     </div>
@@ -44,9 +43,10 @@
                 </div>
                 <div class="col-xl-4 navbar-right">
                     <div class="buttonControl">
-                        <i class="fa fa-compass"></i>
-                        <i class="fa fa-heart-o"></i>
-                        <a style="color: black" class="fa fa-user-o" href="/users/<%= currentUser._id %>"></a>
+                        <a class="fa fa-compass" href="#" ></a>
+                        <a class="fa fa-heart-o" href="#" ></a>
+                        <a class="fa fa-user-o" href="/users/<%= currentUser._id %>"></a>
+                        <a class="fa fa-sign-out" href="/logout"></a>
                     </div>
                 </div>
             </nav>
@@ -62,7 +62,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="avatarUserControl">
-                        <img class="img-circle" src="../image/user_avatar.jpg" alt="">
+                        <img class="img-circle" src="<%= user.avatar %>" alt="">
                     </div>
                 </div>
                 <div class="col-md-8">
