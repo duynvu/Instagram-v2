@@ -10,7 +10,11 @@ var UserSchema = new mongoose.Schema({
     fullname: String,
     avatar: {
         type: String,
-        default: '../imge/user_avatar.jpg'
+        default: '../image/user_avatar.jpg'
+    },
+    description: {
+        type: String,
+        default: 'This is my bio'
     },
     photos: [
     	{
