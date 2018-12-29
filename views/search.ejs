@@ -23,16 +23,16 @@
                         <a class="navbar-brand" href="/photos/new">
                             <img src="../image/insta logo.png" alt="">
                         </a>
-                        <a class="insta-header" href="#">
+                        <a class="insta-header" href="/">
                             <img src="../image/instagram header.png" alt="">
                         </a>
                     </div>
                 </div>
                 <div class="col-xl-4 navbar-middle">
                     <div class="input__search">
-                        <form action="">
+                        <form action="/search" method="GET">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search">
+                                <input name="name" type="text" class="form-control" placeholder="Search">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
                                         <i class="fa fa-search"></i>
@@ -64,16 +64,17 @@
                         <div class="card-header">
                             <h4 class="card-title my-0 mx-1">Search result</h5>
                         </div>
-                        
+                        <% users.forEach(function(user){ %>
                         <div class="card-body followList">
                             <div class="card-text followItem">
                                 <img src="../image/user_avatar.jpg" alt="">
                                 <div class="followInfor">
-                                    <p>the_aligator</p>
-                                    <span>Đào Vũ</span>
+                                    <a style="color:black; text-decoration:none;" href="/users/<%= user._id %>"><p><%= user.username %></p></a>
+                                    <span><%= user.fullname %></span>
                                 </div>
                             </div>
                         </div>
+                        <% }) %>
                     </div>
                 </div>
                 <div class="col-lg-6"></div>

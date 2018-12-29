@@ -88,12 +88,13 @@
             <div class="content">
                 <div class="user-infor">
                     <img src="./image/user_avatar.jpg" alt="">
-                    <span>
-                        <%= p.author.username %></span>
+                    <a href="/users/<%= p.author.id %>"><span><%= p.author.username %></span></a>
                 </div>
+                <a href="photos/<%= p._id %>"> 
                 <div class="picture">
                     <img src="<%= p.image %>" alt="">
                 </div>
+                </a>
                 <div class="post-infor">
                     <div class="post-infor-first">
 

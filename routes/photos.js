@@ -73,7 +73,7 @@ router.post("/", middleware.isLoggedIn ,function(req,res) {
 
 //SHOW - shows more info about the photo
 router.get("/:id", function(req,res){
-	Photo.findById(req.params.id).populate("comments").exec(function(err,foundPhoto){
+	Photo.findById(req.params.id).populate("comments").populate("author").exec(function(err,foundPhoto){
 		if(err){
 			console.log(err);
 		} else {
