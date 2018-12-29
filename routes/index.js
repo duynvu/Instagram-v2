@@ -1,4 +1,5 @@
 var express = require("express");
+var request = require("request");
 var router  = express.Router();
 var passport = require("passport");
 var User = require("../models/user");
@@ -92,6 +93,19 @@ router.get("/logout",function(req,res){
     res.redirect("/");
 })
 
-
+router.get("/search", function(req,res){
+   var name = req.query.name;
+   console.log(name);
+   async => () {
+    const name = 'name'
+    const users = await User.find({'username': new RegExp(name,"i")});
+   };
+   // request("http://localhost:3000/search?name=duy", function(error,response,body){
+   //  if(!error && response.statusCode == 200){
+   //    res.send(body);
+   //    console.log(body);
+   //  }
+   // })
+})
 
 module.exports = router;

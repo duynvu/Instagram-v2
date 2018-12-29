@@ -68,6 +68,12 @@ router.delete("/:id/follow", function(req, res) {
 	})
 })
 
+
+router.get("/followerList",function(req,res){
+	
+})
+
+
 //UPDATE 
 router.get("/:id/edit", function(req,res){
 	User.findById(req.params.id, function(err, foundUser){

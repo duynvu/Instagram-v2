@@ -1,4 +1,7 @@
-
+/* GLOBAL CSS */ 
+html{
+    font-size: 20px;
+}
 
 
 /* END GLOBAL CSS */
@@ -28,12 +31,10 @@
 }
 
 
-.buttonControl a{
+.buttonControl i{
     font-size: 1rem;
     margin: 0 1rem;
     cursor: pointer;
-    color: black;
-    text-decoration: none;
 }
 
 .navbar-middle{
@@ -47,40 +48,20 @@
 /* END HEADER CSS */
 
 
-/*.container{
-    margin-top:10rem;
-    padding-right: 25px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-    background-color: white;
+/* EDIT PROFILE CSS */
+.editProfile h1{
+    margin-top: 1rem;
 }
 
-.edit-form {
-    padding-top: 50px;
-    font-family: 'Open Sans', sans-serif;
-    background-color: rgba(231, 227, 228, 0.47);
-
+.editProfile p{
+    margin-bottom: 0;
+    margin-top: 1rem;
+    margin-bottom: 0.2rem;
 }
 
-.form {
-    padding: 25px 0px;
+.editProfile .form-group{
+    width: 50%;
+    margin: 0 auto;
 }
 
-.edit-label{
-    margin: 15px;
-    text-align: right;
-    margin-left: 15rem;
-}
-
-
-.edit-input{
-    margin: 15px;
-    margin-left: 50px;
-    width: 70%;
-}
-
-#edit-button {
-    margin: 15px;
-    margin-left: 50px;
-}*/
+/* END EDIT PROFILE CSS */

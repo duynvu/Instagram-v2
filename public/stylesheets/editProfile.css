@@ -31,10 +31,12 @@ html{
 }
 
 
-.buttonControl i{
+.buttonControl a{
     font-size: 1rem;
     margin: 0 1rem;
     cursor: pointer;
+    color: black;
+    text-decoration: none;
 }
 
 .navbar-middle{
