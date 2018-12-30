@@ -11,9 +11,9 @@ var express     = require("express"),
 //requring routes
 var indexRoutes      = require("./routes/index"),
     userRoutes       = require("./routes/user"),
-    photoRoutes      = require("./routes/photos"),
-    commentRoutes    = require("./routes/comment"),
-    likeRoutes       = require("./routes/like");
+    photoRoutes      = require("./routes/photos");
+    // commentRoutes    = require("./routes/comment"),
+    // likeRoutes       = require("./routes/like");
 
 mongoose.connect("mongodb://localhost/instagram-v2", { useNewUrlParser: true });
 
@@ -50,8 +50,8 @@ app.use(function(req, res, next){
 app.use("/", indexRoutes);
 app.use("/photos", photoRoutes);
 app.use("/users",userRoutes);
-app.use("/photos/:id/comments", commentRoutes);
-app.use("/photos/:id/likes", likeRoutes);
+// app.use("/photos/:id/comments", commentRoutes);
+// app.use("/photos/:id/likes", likeRoutes);
 
 
 app.listen(process.env.PORT || 3000, () => {
