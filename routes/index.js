@@ -64,7 +64,7 @@ router.post("/register", function(req, res){
         }
         passport.authenticate("local")(req, res, function(){
            req.flash("success", "Welcome to Instagram " + user.username);
-           res.redirect("/homepage"); 
+           res.redirect("/"); 
         });
     });
 });
